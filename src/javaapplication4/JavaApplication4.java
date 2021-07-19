@@ -1,0 +1,52 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package javaapplication4;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author Karolayn Posada
+ */
+public class JavaApplication4 {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Ingrese dos numeros enteros separados por un espacio");
+        String nombre = sc.nextLine();
+        String[] numeros = nombre.split(" ");
+
+        validarNumeros val = new validarNumeros();
+
+        boolean aux = val.validarNumero(numeros[0]);
+        boolean aux2 = val.validarNumero(numeros[1]);
+
+        if (!aux || !aux2) {
+            System.out.println("Validar Entrada se requieren numeros");
+            System.exit(0);
+        } else {
+            if (numeros.length != 2) {
+                System.out.println("Tamaño invalido");
+                System.exit(0);
+            } else {
+                int n = Integer.parseInt(numeros[0]);
+                int m = Integer.parseInt(numeros[1]);
+
+                imprimirMatriz matriz = new imprimirMatriz();
+                matriz.crearMatriz(n, m);
+
+            }
+
+        }
+
+    }
+
+}
