@@ -5,6 +5,7 @@
  */
 package javaapplication4;
 
+import static java.lang.Math.pow;
 import java.util.Scanner;
 
 /**
@@ -15,7 +16,6 @@ public class imprimirMatriz {
 
     void crearMatriz(int n, int m) {
         Scanner sc = new Scanner(System.in);
-        JavaApplication4 principal = new JavaApplication4();
         int matriz[][] = new int[m][n];
 
         for (int i = 0; i < matriz.length; i++) {
@@ -26,7 +26,7 @@ public class imprimirMatriz {
 
         for (int i = 0; i < matriz.length; i++) {
             for (int j = 0; j < matriz[i].length; j++) {
-                System.out.print(matriz[i][j]);
+                System.out.print("[" + matriz[i][j] + "]");
             }
             System.out.println();
         }
@@ -39,9 +39,9 @@ public class imprimirMatriz {
 
             if (numeros.length != 3) {
                 System.out.println("Tamaño invalido");
-                crearMatriz(n,m);
+                crearMatriz(n, m);
             } else {
-                
+
                 validarNumeros val = new validarNumeros();
                 boolean aux = val.validarNumero(numeros[0]);
                 boolean aux2 = val.validarNumero(numeros[1]);
@@ -50,26 +50,32 @@ public class imprimirMatriz {
                 int a = Integer.parseInt(numeros[0]);
                 int b = Integer.parseInt(numeros[1]);
                 int k = Integer.parseInt(numeros[2]);
-            
+
                 if (!aux || !aux2 || !aux3) {
-                    System.out.println("Validar Entrada se requieren numeros");
-                    crearMatriz(n,m);
+                    System.out.println("Validar Entrada se requieren numeros enteros");
+                    crearMatriz(n, m);
                 } else {
-                    if (i == 0) {
-                        for (int j = 0; j < n; j++) {
-                            if (j + 1 >= a && j + 1 <= b) {
-                                matriz[i][j] = k;
+                    if (a >= 1 && b >= a && b <= n && k > 0 && k < pow(10, 9)) {
+                        if (i == 0) {
+                            for (int j = 0; j < n; j++) {
+                                if (j + 1 >= a && j + 1 <= b) {
+                                    matriz[i][j] = k;
+                                }
+                            }
+                        } else {
+                            for (int j = 0; j < n; j++) {
+                                if (j + 1 >= a && j + 1 <= b) {
+                                    matriz[i][j] = k + matriz[i - 1][j];
+                                } else {
+                                    matriz[i][j] = matriz[i - 1][j];
+                                }
                             }
                         }
                     } else {
-                        for (int j = 0; j < n; j++) {
-                            if (j + 1 >= a && j + 1 <= b) {
-                                matriz[i][j] = k + matriz[i - 1][j];
-                            } else {
-                                matriz[i][j] = matriz[i - 1][j];
-                            }
-                        }
+                        System.out.println("Valores Invalidos");
+                        crearMatriz(n, m);
                     }
+
                 }
             }
 

@@ -5,6 +5,7 @@
  */
 package javaapplication4;
 
+import static java.lang.Math.pow;
 import java.util.Scanner;
 
 /**
@@ -31,17 +32,22 @@ public class JavaApplication4 {
 
         if (!aux || !aux2) {
             System.out.println("Validar Entrada se requieren numeros");
-            System.exit(0);
+            main(args);
         } else {
             if (numeros.length != 2) {
                 System.out.println("Tamaño invalido");
-                System.exit(0);
+                main(args);
             } else {
                 int n = Integer.parseInt(numeros[0]);
                 int m = Integer.parseInt(numeros[1]);
 
-                imprimirMatriz matriz = new imprimirMatriz();
-                matriz.crearMatriz(n, m);
+                if ((n > 3 && n < pow(10, 7)) && (m > 1 && n < (pow(10, 5) * 2))) {
+                    imprimirMatriz matriz = new imprimirMatriz();
+                    matriz.crearMatriz(n, m);
+                }else{
+                    System.out.println("Numeros invalidos");
+                    main(args);
+                }
 
             }
 
